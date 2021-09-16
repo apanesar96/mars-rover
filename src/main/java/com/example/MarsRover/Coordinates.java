@@ -18,7 +18,7 @@ public class Coordinates {
         return yCoordinate;
     }
 
-    public void incrementYValue(){
+    public void incrementYValue() {
         this.yCoordinate = yCoordinate + 1 == gridBoundary ? 0 : yCoordinate + 1;
     }
 
@@ -32,5 +32,9 @@ public class Coordinates {
 
     public void decrementXValue() {
         this.xCoordinate = xCoordinate - 1 < 0 ? gridBoundary - 1: xCoordinate - 1;
+    }
+
+    public boolean compare(Coordinates obstacleCoordinate) {
+       return this.getYCoordinate() == obstacleCoordinate.getYCoordinate() && this.getXCoordinate() == obstacleCoordinate.getXCoordinate();
     }
 }

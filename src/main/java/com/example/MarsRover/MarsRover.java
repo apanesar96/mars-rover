@@ -1,13 +1,12 @@
 package com.example.MarsRover;
 
 public class MarsRover {
-    private Coordinates coordinates = new Coordinates(0, 0);
+    private Coordinates roverCoordinates = new Coordinates(0, 0);
     private char direction = 'N';
     private final char[] directions = {'N', 'E', 'S', 'W'};
     private int directionIndex = 0;
     //Obstacles
-    private final int obstacleXCoordinate = 1;
-    private final int obstacleYCoordinate = 1;
+    private Coordinates obstacleCoordinate =  new Coordinates(1, 1 );
 
     public String execute(String commands) {
 
@@ -28,11 +27,11 @@ public class MarsRover {
                 }
             }
         }
-        return finalPosition + coordinates.getXCoordinate() + ":" + coordinates.getYCoordinate() + ":" + direction;
+        return finalPosition + roverCoordinates.getXCoordinate() + ":" + roverCoordinates.getYCoordinate() + ":" + direction;
     }
 
     private boolean isAnObstacle() {
-        return coordinates.getYCoordinate() == obstacleYCoordinate && coordinates.getXCoordinate() == obstacleXCoordinate;
+        return roverCoordinates.compare(obstacleCoordinate);
     }
 
     private void returnToLastPosition() {
@@ -59,19 +58,19 @@ public class MarsRover {
     void moveForward() {
         switch (direction) {
             case 'E':
-                coordinates.incrementXValue();
+                roverCoordinates.incrementXValue();
                 break;
 
             case 'W':
-                coordinates.decrementXValue();
+                roverCoordinates.decrementXValue();
                 break;
 
             case 'S':
-                coordinates.decrementYValue();
+                roverCoordinates.decrementYValue();
                 break;
 
             case 'N':
-                coordinates.incrementYValue();
+                roverCoordinates.incrementYValue();
         }
     }
 }
