@@ -3,7 +3,7 @@ package com.example.MarsRover;
 public class Coordinates {
     private int xCoordinate;
     private int yCoordinate;
-    private final GridSize gridSize
+    private int gridBoundary = 10;
 
     public Coordinates(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate;
@@ -18,19 +18,19 @@ public class Coordinates {
         return yCoordinate;
     }
 
-    public void incrementYValue(int gridSize){
-        this.yCoordinate = yCoordinate + 1 == gridSize ? 0 : yCoordinate + 1;
+    public void incrementYValue(){
+        this.yCoordinate = yCoordinate + 1 == gridBoundary ? 0 : yCoordinate + 1;
     }
 
-    public void incrementXValue(int gridSize) {
-        this.xCoordinate = xCoordinate + 1 == gridSize ? 0 : xCoordinate + 1;
+    public void incrementXValue() {
+        this.xCoordinate = xCoordinate + 1 == gridBoundary ? 0 : xCoordinate + 1;
     }
 
-    public void decrementYValue(int gridSize) {
-        this.yCoordinate = yCoordinate - 1 < 0 ? gridSize - 1: yCoordinate - 1;
+    public void decrementYValue() {
+        this.yCoordinate = yCoordinate - 1 < 0 ? gridBoundary - 1: yCoordinate - 1;
     }
 
-    public void decrementXValue(int gridSize) {
-        this.xCoordinate = xCoordinate - 1 < 0 ? gridSize - 1: xCoordinate - 1;
+    public void decrementXValue() {
+        this.xCoordinate = xCoordinate - 1 < 0 ? gridBoundary - 1: xCoordinate - 1;
     }
 }
