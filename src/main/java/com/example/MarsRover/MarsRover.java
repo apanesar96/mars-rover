@@ -1,8 +1,6 @@
 package com.example.MarsRover;
-
 public class MarsRover {
-    private int yCoordinate = 0;
-    private int xCoordinate = 0;
+    private Coordinates coordinates = new Coordinates(0, 0);
     private char direction = 'N';
     private final char[] directions = {'N', 'E', 'S', 'W'};
     private int directionIndex = 0;
@@ -31,11 +29,11 @@ public class MarsRover {
                 }
             }
         }
-        return finalPosition + xCoordinate + ":" + yCoordinate + ":" + direction;
+        return finalPosition + coordinates.getXCoordinate() + ":" + coordinates.getYCoordinate() + ":" + direction;
     }
 
     private boolean isAnObstacle() {
-        return yCoordinate == obstacleYCoordinate && xCoordinate == obstacleXCoordinate;
+        return coordinates.getYCoordinate() == obstacleYCoordinate && coordinates.getXCoordinate() == obstacleXCoordinate;
     }
 
     private void returnToLastPosition() {
@@ -62,23 +60,19 @@ public class MarsRover {
     void moveForward() {
         switch (direction) {
             case 'E':
-                if (++xCoordinate == gridSize)
-                xCoordinate = 0;
+                coordinates.incrementXValue(gridSize);
                 break;
 
             case 'W':
-                if (--xCoordinate < 0)
-                xCoordinate = gridSize - 1;
+                coordinates.decrementXValue(gridSize);
                 break;
 
             case 'S':
-                if(--yCoordinate < 0)
-                yCoordinate = gridSize - 1;
+                coordinates.decrementYValue(gridSize);
                 break;
 
             case 'N':
-                if (++yCoordinate == gridSize)
-                yCoordinate = 0;
+                coordinates.incrementYValue(gridSize);
         }
     }
     }
