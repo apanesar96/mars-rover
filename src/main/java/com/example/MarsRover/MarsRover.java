@@ -19,7 +19,8 @@ public class MarsRover {
         char[] commandsArray = commands.toCharArray();
 
         for(char command : commandsArray) {
-            if (command == 'R' || command == 'L') turn(command);
+            if (command == 'R') turnRight();
+            if (command =='L') turnLeft();
             if (command == 'M') {
                 moveForward();
                 if (isAnObstacle()) {
@@ -44,16 +45,18 @@ public class MarsRover {
     }
 
     private void turn180() {
-        turn('R');
-        turn('R');
+        turnRight();
+        turnRight();
     }
 
-    private void turn(char command) {
-        directionIndex = command == 'R' ? directionIndex + 1 : directionIndex - 1;
-
-        directionIndex = directionIndex < 0 ? 3 : directionIndex > 3 ? 0 : directionIndex;
+    private void turnLeft() {
+        directionIndex = --directionIndex < 0 ? directions.length - 1 : directionIndex;
 
         direction = directions[directionIndex];
+    }
+
+    private void turnRight() {
+        direction = directions[++directionIndex % 4];
     }
 
     void moveForward() {
