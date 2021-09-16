@@ -6,7 +6,6 @@ public enum Direction {
     S,
     W;
 
-
     public Direction turnRight() {
             return this.ordinal() < Direction.values().length - 1
             ? Direction.values()[this.ordinal() + 1]
@@ -18,7 +17,6 @@ public enum Direction {
         ? Direction.values()[this.ordinal() - 1]
         : Direction.values()[Direction.values().length - 1];
     }
-
 
     public void moveForward(Coordinates roverCoordinates) {
         switch (this) {
@@ -36,5 +34,4 @@ public enum Direction {
                 break;
         }
     }
-
 }

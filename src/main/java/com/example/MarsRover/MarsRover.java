@@ -2,11 +2,7 @@ package com.example.MarsRover;
 
 public class MarsRover {
     private Coordinates roverCoordinates = new Coordinates(0, 0);
-    private char direction = 'N';
     private Direction directionEnum = Direction.N;
-    private final char[] directions = {'N', 'E', 'S', 'W'};
-    private int directionIndex = 0;
-    //Obstacles
     private Coordinates obstacleCoordinate =  new Coordinates(1, 1 );
 
     public String execute(String commands) {
