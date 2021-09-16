@@ -3,6 +3,7 @@ package com.example.MarsRover;
 public class MarsRover {
     private Coordinates roverCoordinates = new Coordinates(0, 0);
     private char direction = 'N';
+    private Direction directionEnum = Direction.N;
     private final char[] directions = {'N', 'E', 'S', 'W'};
     private int directionIndex = 0;
     //Obstacles
@@ -15,10 +16,10 @@ public class MarsRover {
         char[] commandsArray = commands.toCharArray();
 
         for (char command : commandsArray) {
-            if (command == 'R') turnRight();
-            if (command == 'L') turnLeft();
+            if (command == 'R') directionEnum = directionEnum.turnRight();
+            if (command == 'L') directionEnum = directionEnum.turnLeft();
             if (command == 'M') {
-                moveForward();
+                directionEnum.moveForward(roverCoordinates);
                 if (isAnObstacle()) {
                     returnToLastPosition();
 
@@ -27,7 +28,7 @@ public class MarsRover {
                 }
             }
         }
-        return finalPosition + roverCoordinates.getXCoordinate() + ":" + roverCoordinates.getYCoordinate() + ":" + direction;
+        return finalPosition + roverCoordinates.getXCoordinate() + ":" + roverCoordinates.getYCoordinate() + ":" + directionEnum;
     }
 
     private boolean isAnObstacle() {
@@ -36,42 +37,13 @@ public class MarsRover {
 
     private void returnToLastPosition() {
         turn180();
-        moveForward();
+        directionEnum.moveForward(roverCoordinates);
         turn180();
     }
 
     private void turn180() {
-        turnRight();
-        turnRight();
-    }
-
-    private void turnLeft() {
-        directionIndex = --directionIndex < 0 ? directions.length - 1 : directionIndex;
-
-        direction = directions[directionIndex];
-    }
-
-    private void turnRight() {
-        direction = directions[++directionIndex % 4];
-    }
-
-    void moveForward() {
-        switch (direction) {
-            case 'E':
-                roverCoordinates.incrementXValue();
-                break;
-
-            case 'W':
-                roverCoordinates.decrementXValue();
-                break;
-
-            case 'S':
-                roverCoordinates.decrementYValue();
-                break;
-
-            case 'N':
-                roverCoordinates.incrementYValue();
-        }
+        directionEnum = directionEnum.turnRight();
+        directionEnum = directionEnum.turnRight();
     }
 }
 

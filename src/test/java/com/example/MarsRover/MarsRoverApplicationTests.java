@@ -23,15 +23,15 @@ class MarsRoverApplicationTests {
 		assertEquals("0:0:N", marsRover.execute(""));
 	}
 
-//	@Test
-//	void move_forward() {
-//		assertEquals("0:1:N", marsRover.execute("M"));
-//	}
-//
-//	@Test
-//	void move_forward_twice() {
-//		assertEquals("0:2:N", marsRover.execute("MM"));
-//	}
+	@Test
+	void move_forward() {
+		assertEquals("0:1:N", marsRover.execute("M"));
+	}
+
+	@Test
+	void move_forward_twice() {
+		assertEquals("0:2:N", marsRover.execute("MM"));
+	}
 
 	@ParameterizedTest
 	@CsvSource({"M, 0:1:N","MM, 0:2:N","MMM, 0:3:N"})
