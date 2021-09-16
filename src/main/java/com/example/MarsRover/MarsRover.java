@@ -13,8 +13,7 @@ public class MarsRover {
 
 
     public String execute(String commands) {
-//        if (commands.equals("R")) return "0:0:E";
-//        if (commands.equals("RR")) return "0:0:S";
+
         String finalPosition = "";
 
         char[] commandsArray = commands.toCharArray();
@@ -56,27 +55,28 @@ public class MarsRover {
 
         direction = directions[directionIndex];
     }
-//
-//
 
     void moveForward() {
-        if(direction == 'E') {
-            if (++xCoordinate == gridSize)
+        switch (direction) {
+            case 'E':
+                if (++xCoordinate == gridSize)
                 xCoordinate = 0;
-        }
-        if (direction == 'W') {
-            if (--xCoordinate < 0)
+                break;
+
+            case 'W':
+                if (--xCoordinate < 0)
                 xCoordinate = gridSize - 1;
-        }
-        if (direction == 'S') {
-            if(--yCoordinate < 0) {
+                break;
+
+            case 'S':
+                if(--yCoordinate < 0)
                 yCoordinate = gridSize - 1;
-            }
-        }
-        if(direction == 'N') {
-            if (++yCoordinate == gridSize)
+                break;
+
+            case 'N':
+                if (++yCoordinate == gridSize)
                 yCoordinate = 0;
         }
-
     }
-}
+    }
+
